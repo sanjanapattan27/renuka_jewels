@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Shri Renuka Jewellers</title>
+    <link rel="stylesheet" href="/static/assets/css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard">
+        <aside class="sidebar">
+            <h2>Shri Renuka Jewellers</h2>
+            <nav>
+                <ul>
+                    <li><a href="#overview">Overview</a></li>
+                    <li class="dropdown">
+                        <a href="#products">Products</a>
+                        <div class="dropdown-content">
+                            <a href="#add-category">Add Category</a>
+                            <a href="#add-product">Add Product</a>
+                        </div>
+                    </li>
+                    <li><a href="#orders">Orders</a></li>
+                    <li><a href="#customers">Customers</a></li>
+                    <li><a href="#inventory">Inventory</a></li>
+                    <li><a href="#reports">Reports</a></li>
+                    <li><a href="#settings">Settings</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <header>
+                <h1>Welcome, Admin</h1>
+                <div class="actions">
+                    <button onclick="showProfile()">Profile</button>
+                    <button onclick="logout()">Logout</button>
+                </div>
+            </header>
+            <section id="overview" class="section active">
+                <h2>Overview</h2>
+                <div class="cards">
+                    <div class="card">
+                        <h3>Total Products</h3>
+                        <p>100</p>
+                    </div>
+                    <div class="card">
+                        <h3>Total Sales</h3>
+                        <p>$5000</p>
+                    </div>
+                    <div class="card">
+                        <h3>Recent Orders</h3>
+                        <p>10</p>
+                    </div>
+                </div>
+                <div class="charts">
+                    <canvas id="salesChart"></canvas>
+                </div>
+            </section>
+            <section id="products" class="section">
+                <h2>Products Management</h2>
+                <!-- Products management content goes here -->
+            </section>
+            <section id="add-category" class="section">
+                <h2>Add Category</h2>
+                <!-- Add Category form/content goes here -->
+            </section>
+            <section id="add-product" class="section">
+                <h2>Add Product</h2>
+                <!-- Add Product form/content goes here -->
+            </section>
+            <section id="orders" class="section">
+                <h2>Orders Management</h2>
+                <!-- Orders management content goes here -->
+            </section>
+            <section id="customers" class="section">
+                <h2>Customers Management</h2>
+                <!-- Customers management content goes here -->
+            </section>
+            <section id="inventory" class="section">
+                <h2>Inventory Management</h2>
+                <!-- Inventory management content goes here -->
+            </section>
+            <section id="reports" class="section">
+                <h2>Reports</h2>
+                <!-- Reports content goes here -->
+            </section>
+            <section id="settings" class="section">
+                <h2>Settings</h2>
+                <!-- Settings content goes here -->
+            </section>
+        </main>
+    </div>
+    <script src="/static/assets/js/scripts.js"></script>
+</body>
+</html>

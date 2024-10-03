@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Renuka Jewellers</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playball&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="/static/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/static/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/static/lib/owlcarousel/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="/static/css/style.css" rel="stylesheet">
+    
+    <style>
+        /* Reset and base styles */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #fffcf8;
+        }
+
+        /* Header styles */
+        header {
+            position: relative;
+            background-color: #fffcf8;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: #fffcf8;
+            padding: 20px;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-wrapper {
+            display: flex;
+            flex: 1;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            width: 250px;
+            background-color: #fef3e7;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            height: calc(100vh - 80px); /* Adjust height accordingly */
+            overflow-y: auto;
+        }
+
+        .sidebar h2 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #d1a35e;
+            text-align: center;
+        }
+
+        .sidebar nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar nav ul li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar nav ul li button {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 10px;
+            text-align: left;
+            color: #333;
+            font-size: 1em;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .sidebar nav ul li button:hover {
+            background-color: #f9e2b8;
+            color: #d1a35e;
+        }
+
+        /* Main content styles */
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            margin-top: 50px; /* Adjust as necessary */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: flex-start; /* Align items at the top */
+        }
+
+        .product-card {
+            width: calc(30% - 20px);
+            max-width: 300px;
+            background-color: #ffffff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .product-card img {
+            max-width: 100%;
+            height: auto;
+            max-height: 300px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .product-card h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .product-card p {
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: auto; /* Align buttons to the top */
+        }
+
+        .button-group a,
+        .button-group button {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            text-align: center;
+            transition: background-color 0.3s, color 0.3s;
+            cursor: pointer;
+        }
+
+        .button-group a {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .button-group button {
+            background-color: transparent;
+            border: none;
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        .button-group button:hover {
+            color: #d1a35e;
+        }
+
+        .delete-button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+            transition: background-color 0.3s ease;
+            margin-top: auto;
+        }
+
+        .delete-button:hover {
+            background-color: #d32f2f;
+        }
+
+        /* Order Now button styles */
+        .product-card .button-group a {
+            background-color: #d1a35e; /* Gold color */
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .product-card .button-group a:hover {
+            background-color: #b58e4c; /* Darker gold on hover */
+        }
+
+        .heart-button {
+            background-color: transparent;
+            border: none;
+            font-size: 1.2em;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .heart-button.active i {
+            color: red;
+        }
+        /* Modal styles */
+/* Modal styles */
+.modal-dialog {
+    max-width: 70%;
+    max-height: 70%;
+    margin: auto;
+}
+
+.modal-body {
+    position: relative;
+    flex: 1 1 auto;
+    padding: 1rem;
+}
+
+.modal-body img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px; /* Optional: add border radius for a nicer look */
+}
+
+
+    </style>
+</head>
+
+<body>
+     <!-- Spinner Start -->
+     <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+
+
+    <!-- Navbar start -->
+   <!-- Navbar Start -->
+<div class="container-fluid nav-bar">
+    <div class="container">
+        <nav class="navbar navbar-light navbar-expand-lg py-4">
+            <a href="/" class="navbar-brand">
+                <h1 class="text-primary fw-bold mb-0">Shri Renuka Jewellers<span class="text-dark"></span></h1>
+            </a>
+            <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="fa fa-bars text-primary"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav mx-auto">
+                    <a href="/" class="nav-item nav-link">Home</a>
+                    {% if not user.is_authenticated %}
+                    <a href="{% url 'about' %}" class="nav-item nav-link">About</a>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'ornaments' %}" class="nav-item nav-link">Ornaments</a>
+                    {% else %}
+                    <a href="{% url 'new_ornaments' %}" class="nav-item nav-link">Ornaments</a>
+                    {% endif %}
+                    <a href="{% url 'contact' %}" class="nav-item nav-link">Contact</a>
+                    <a href="{% url 'feedback' %}" class="nav-item nav-link">Feedback</a>
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'change_password' %}" class="nav-item nav-link">Change Password</a>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'user_logout' %}" class="nav-item nav-link">Logout</a>
+                    {% else %}
+                    <a href="{% url 'login' %}" class="nav-item nav-link">Login</a>
+                    {% endif %}
+                </div>
+                {% if user.is_authenticated %}
+                <a href="{% url 'wish' %}" class="btn-search btn btn-primary btn-md-square me-4 rounded-circle d-none d-lg-inline-flex">
+                    <i class="fas fa-heart"></i>
+                </a>
+                {% endif %}
+                {% if user.is_authenticated %}
+                <a href="ornaments" class="btn btn-primary py-2 px-4 d-none d-xl-inline-block rounded-pill">Book Now</a>
+                {% else %}
+                <a href="new_ornaments" class="btn btn-primary py-2 px-4 d-none d-xl-inline-block rounded-pill">Book Now</a>
+                {% endif %}
+                <!-- Search Form Start -->
+                
+                <!-- Search Form End -->
+            </div>
+        </nav>
+    </div>
+</div>
+<!-- Navbar End -->
+  <!-- Navbar End -->
+
+
+    <!-- Modal Search Start -->
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content rounded-0">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Search by keyword</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex align-items-center">
+                    <div class="input-group w-75 mx-auto d-flex">
+                        <input type="search" class="form-control bg-transparent p-3" placeholder="keywords" aria-describedby="search-icon-1">
+                        <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <header>
+        <div class="container-fluid bg-light py-6 mt-0">
+            <div class="container text-center">
+                <h1 class="display-1 mb-4">Ornaments</h1>
+                <ol class="breadcrumb justify-content-center mb-0">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                    <li class="breadcrumb-item text-dark" aria-current="page">Ornaments</li>
+                </ol>
+            </div>
+        </div>
+    </header>
+
+    <div class="content-wrapper">
+        <div class="sidebar">
+            <h2>Categories</h2>
+            <nav>
+                <form id="categoryForm" method="get" action="{% url 'products_by_category' %}">
+                    <ul>
+                        <li>
+                            <button type="submit" name="category_id" value="">All Categories</button>
+                        </li>
+                        {% for category in categories %}
+                        <li>
+                            <button type="submit" name="category_id" value="{{ category.id }}">
+                                {{ category.name }}
+                            </button>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </form>
+            </nav>
+        </div>
+        <div class="main-content">
+            <h1 style="text-align: center; width: 100%; margin-bottom: 20px;">Ornaments</h1>
+            
+            {% for product in products %}
+            <div class="product-card" data-product-id="{{ product.id }}">
+                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                <h2>{{ product.name }}</h2>
+                <p>{{ product.description }}</p>
+                <div class="button-group">
+                    <a href="javascript:void(0);" class="btn btn-primary order-now"
+                       data-product-name="{{ product.name }}"
+                       data-product-image="{{ product.image.url }}"
+                       data-product-description="{{ product.description }}">Order Now</a>
+                  
+                    <form method="post" action="{% url 'save_to_wishlist' product.id %}">
+                        {% csrf_token %}
+                       {% if user.is_authenticated %}
+                        <button type="submit" class="heart-button {% if product.in_wishlist %}active{% endif %}">
+                            <i class="bi bi-heart"></i>
+                        </button>
+                        {% endif %}
+                 
+                    </form>
+                
+                </div>
+              
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="" alt="Product Image" id="modalImage" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container-fluid footer py-6 my-6 mb-0 bg-light wow bounceInUp" data-wow-delay="0.1s">
+            <div class="container">
+                <div class="row align-items-start">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="footer-item">
+                            <h1 class="text-primary">Shri Renuka Jewellers<span class="text-dark"></span></h1>
+                            <p class="lh-lg mb-4">We're passionate about bringing you beautiful jewelry that's perfect for every occasion.</p>
+                            <div class="footer-icon d-flex">
+                                <a class="btn btn-primary btn-sm-square me-2 rounded-circle" href="tel:+919449973249"><i class="fas fa-phone-alt"></i></a>
+                                <a class="btn btn-primary btn-sm-square rounded-circle" href="https://wa.me/918660584249"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="footer-item">
+                            <h4 class="mb-4">Contact Us</h4>
+                            <div class="d-flex flex-column align-items-start">
+                                <p><i class="fa fa-map-marker-alt text-primary me-2"></i>Javali Sall, Hubli</p>
+                                <p><i class="fa fa-phone-alt text-primary me-2"></i>Datta Pattan : 9449973249<br>
+                                    Pratham Pattan : 8660584249</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div>
+                            <iframe width="350" height="430" allow="microphone;" src="https://console.dialogflow.com/api-client/demo/embedded/a71b422a-b8ea-4c1a-8965-918b6eb82627"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </footer>
+
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container text-center text-md-start">
+            <div class="row">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <span class="text-light">&copy; <a href="#" class="text-light">Shri Renuka Jewellers</a>, All rights reserved.</span>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-light me-2">Privacy Policy</a>
+                    <a href="#" class="text-light">Terms of Use</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-md-square btn-primary rounded-circle back-to-top">
+        <i class="fa fa-arrow-up"></i>
+    </a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/lib/wow/wow.min.js"></script>
+    <script src="/static/lib/easing/easing.min.js"></script>
+    <script src="/static/lib/waypoints/waypoints.min.js"></script>
+    <script src="/static/lib/counterup/counterup.min.js"></script>
+    <script src="/static/lib/lightbox/js/lightbox.min.js"></script>
+    <script src="/static/lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="/static/js/main.js"></script>
+    <script>
+        document.querySelectorAll('.heart-button').forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                const productId = this.closest('.product-card').dataset.productId;
+                
+                fetch(`/save_to_wishlist/${productId}/`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}',
+                        'Content-Type': 'application/json',
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Toggle active class for heart button
+                        this.classList.toggle('active');
+                        // Optionally, you can change the heart icon color
+                        const heartIcon = this.querySelector('i');
+                        if (this.classList.contains('active')) {
+                            heartIcon.style.color = 'red'; // Change color to red
+                        } else {
+                            heartIcon.style.color = ''; // Reset color
+                        }
+                    } else {
+                        alert('Failed to add product to wishlist.');
+                    }
+                });
+            });
+        });
+
+    </script>
+<script>
+    document.querySelectorAll('.order-now').forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+            const productName = this.getAttribute('data-product-name');
+            let productImage = this.getAttribute('data-product-image');
+            const productDescription = this.getAttribute('data-product-description');
+
+            // Ensure the image URL is in HTTPS format
+            if (productImage.startsWith('http:')) {
+                productImage = productImage.replace('http:', 'https:');
+            }
+
+            // Construct WhatsApp message
+            const whatsappMessage = `Hello, I would like to order the following product:\n\n` +
+                                    `*${productName}*\n` +
+                                    `${productDescription}\n\n` +
+                                    `Please check the image in the link: ${productImage}`;
+
+            // Encode message for WhatsApp link
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+
+            // Open WhatsApp with pre-filled message
+            window.open(`https://wa.me/6364562719/?text=${encodedMessage}`, '_blank');
+        });
+    });
+    // Function to show modal with product image
+function showModal(imageUrl) {
+    var modalImage = document.getElementById('modalImage');
+    modalImage.src = imageUrl;
+    var productModal = new bootstrap.Modal(document.getElementById('productModal'));
+    productModal.show();
+}
+
+// Add event listeners to product cards to trigger modal
+document.querySelectorAll('.product-card').forEach(function(card) {
+    card.addEventListener('click', function() {
+        var imageUrl = card.querySelector('img').src;
+        showModal(imageUrl);
+    });
+});
+
+</script>
+
+ 
+    
+</body>
+
+</html>
+

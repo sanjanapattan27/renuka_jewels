@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Modal Search End -->
+
+
+<!-- Hero Start -->
+<div class="container-fluid bg-light py-6 my-6 mt-0">
+    <div class="container text-center animated bounceInDown">
+        <h1 class="display-1 mb-4">Feedback</h1>
+        <ol class="breadcrumb justify-content-center mb-0 animated bounceInDown">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Pages</a></li>
+            <li class="breadcrumb-item text-dark" aria-current="page">Feedback</li>
+        </ol>
+    </div>
+</div>
+<!-- Hero End -->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="feedback-container">
+                <h1 class="text-center mb-4">Feedback Form</h1>
+                <form method="post" action="{% url 'feedback' %}" id="feedbackForm">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="tel" name="contact" id="contactNumber" class="form-control" placeholder="Contact Number" pattern="[0-9]{10}" required>
+                    </div>
+                    <div class="mb-3">
+                        <textarea name="message" class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Feedback</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // Validate contact number input and show alert
+    document.getElementById('feedbackForm').addEventListener('submit', function(event) {
+        var contactInput = document.getElementById('contactNumber');
+        if (contactInput.value.length !== 10) {
+            alert('Please enter a 10-digit contact number.');
+            event.preventDefault();
+        }
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Contact End -->
+
+{% endblock %}

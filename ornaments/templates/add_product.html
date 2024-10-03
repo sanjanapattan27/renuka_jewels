@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product - Shri Renuka Jewellers</title>
+    <style>
+        /* Reset and base styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            background-color: #fcf8f3; /* Light background color */
+        }
+        
+        .dashboard {
+            display: flex;
+            width: 100%;
+        }
+        
+        /* Sidebar styles */
+        .sidebar {
+            width: 250px;
+            background-color: #fef3e7; /* Light sidebar background color */
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar h2 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #d1a35e; /* Gold color */
+            text-align: center;
+        }
+        
+        .sidebar nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .sidebar nav ul li {
+            margin-bottom: 10px;
+            position: relative;
+        }
+        
+        .sidebar nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1em;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        .sidebar nav ul li a:hover {
+            background-color: #f9e2b8;
+            color: #d1a35e; /* Gold color */
+        }
+        
+        .sidebar nav ul li .dropdown-content {
+            display: none;
+            background-color: #fef3e7;
+            position: absolute;
+            left: 250px; /* Align dropdown to the right of the sidebar */
+            top: 0;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        
+        .sidebar nav ul li:hover .dropdown-content {
+            display: block;
+        }
+        
+        .sidebar nav ul li .dropdown-content a {
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            color: #333;
+        }
+        
+        .sidebar nav ul li .dropdown-content a:hover {
+            background-color: #f9e2b8;
+            color: #d1a35e; /* Gold color */
+        }
+        
+        /* Main content styles */
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            background-color: #ffffff; /* White background for content area */
+            border-top-left-radius: 20px;
+            border-bottom-left-radius: 20px;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+        }
+        
+        .main-content header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .main-content header h1 {
+            margin: 0;
+            font-size: 2em;
+            color: #333;
+        }
+        
+        .main-content .actions {
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            cursor: pointer;
+            background-color: #d1a35e; /* Gold background */
+            color: white;
+            border-radius: 5px;
+            margin-left: 10px;
+            transition: background-color 0.3s;
+        }
+        
+        .main-content .actions button:hover {
+            background-color: #b5838d; /* Darker gold */
+        }
+        
+        .section {
+            display: none;
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        /* Form styles */
+        .form-container {
+            margin-bottom: 20px;
+        }
+        
+        .form-container label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .form-container input[type="text"],
+        .form-container input[type="file"],
+        .form-container select,
+        .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+        
+        .form-container textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .form-container button[type="submit"] {
+            background-color: #d1a35e; /* Gold background */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+        
+        .form-container button[type="submit"]:hover {
+            background-color: #b5838d; /* Darker gold */
+        }
+        
+        /* Existing products list styles */
+        .existing-products {
+            margin-top: 20px;
+        }
+        
+        .existing-products h2 {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .existing-products ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .existing-products li {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 20px;
+        }
+        
+        .existing-products li:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .existing-products li img {
+            max-width: 200px;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .existing-products li div {
+            flex: 1;
+            margin-right: 20px;
+        }
+        
+        .existing-products li h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .existing-products li p {
+            margin: 0;
+            color: #666;
+        }
+        
+        .delete-button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .delete-button:hover {
+            background-color: #d32f2f;
+        }
+        table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+thead {
+    background-color: #f9f9f9; /* Light background for header */
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd; /* Gray border between rows */
+}
+
+th {
+    background-color: #f1f1f1; /* Light background for header cells */
+    font-weight: bold;
+}
+
+tr:hover {
+    background-color: #f5f5f5; /* Light gray background on hover */
+}
+
+.delete-button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+    background-color: #d32f2f;
+}
+
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <aside class="sidebar">
+            <h2>Shri Renuka Jewellers</h2>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'admin_overview' %}">Overview</a></li>
+                    <li class="dropdown">
+                        <a href="">Products</a>
+                        <div class="dropdown-content">
+                            <a href="{% url 'add_category' %}">Add Category</a>
+                            <a href="{% url 'add_product' %}">Add Product</a>
+                        </div>
+                    </li>
+                    <li><a href="view_users">View Users</a></li>
+                    <li><a href="user_feedback">Feedbacks</a></li>
+                    <li><a href="user_logout">Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <header>
+                <h1>Add Product</h1>
+            </header>
+            <section id="add-product" class="section active">
+                <div class="form-container">
+                    <form method="POST" action="{% url 'add_product' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <label for="name">Ornament Name:</label>
+                        <input type="text" id="name" name="name" required>
+                        
+                        <label for="image">Upload Image:</label>
+                        <input type="file" id="image" name="image" accept="image/*" required>
+                        
+                        <label for="category">Category:</label>
+                        <select id="category" name="category" required>
+                            <option value="">Select Category</option>
+                            {% for category in categories %}
+                                <option value="{{ category.id }}">{{ category.name }}</option>
+                            {% endfor %}
+                        </select>
+                        
+                        <label for="description">Description:</label>
+                        <textarea id="description" name="description" rows="4"></textarea>
+                        
+                        <button type="submit" class="button">Add Product</button>
+                    </form>
+                </div>
+                
+                <div class="existing-products">
+                    <h2>Existing Products</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Category</th>
+                                <th>Image</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for product in products %}
+                            <tr>
+                                <td>{{ product.name }}</td>
+                                <td>{{ product.description }}</td>
+                                <td>{{ product.category.name }}</td>
+                                <td><img src="{{ product.image.url }}" alt="{{ product.name }}" style="max-width: 100px;"></td>
+                                <td>
+                                    <form method="POST" action="{% url 'delete_product' product.id %}" class="delete-form">
+                                        {% csrf_token %}
+                                        <button type="submit" class="delete-button">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                 </section>
+        </main>
+    </div>
+</body>
+</html>
+
